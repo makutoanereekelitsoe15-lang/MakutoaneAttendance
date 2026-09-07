@@ -1,10 +1,4 @@
-// server.js
-// Express API that connects the React frontend to the SQLite database.
-//
-// Routes (mapped to the rubric):
-//   GET    /api/students      -> RETRIEVING  (12 marks)
-//   POST   /api/students      -> INSERTING   (8 marks)
-//   PUT    /api/students/:id  -> UPDATING    (12 marks)
+
 
 const express = require("express");
 const cors = require("cors");
@@ -16,9 +10,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-// ---------- CREATE THE DATABASE (2 marks) ----------
-// This opens (or creates, if it doesn't exist) a file called attendance.db
-// in the backend folder. That file IS the database.
+
 const db = new Database("attendance.db");
 
 db.exec(`
@@ -30,7 +22,7 @@ db.exec(`
   )
 `);
 
-// Seed the table with the assignment's starting data, but only once
+
 const { count } = db.prepare("SELECT COUNT(*) AS count FROM students").get();
 if (count === 0) {
   const insert = db.prepare(
@@ -48,7 +40,6 @@ if (count === 0) {
   console.log("Seeded attendance.db with starting students.");
 }
 
-// ---------- RETRIEVE: get every student ----------
 app.get("/api/students", (req, res) => {
   try {
     const students = db.prepare("SELECT * FROM students ORDER BY id").all();
@@ -58,7 +49,6 @@ app.get("/api/students", (req, res) => {
   }
 });
 
-// ---------- INSERT: add a new student ----------
 app.post("/api/students", (req, res) => {
   const { name, number, status } = req.body;
 
@@ -80,7 +70,6 @@ app.post("/api/students", (req, res) => {
   }
 });
 
-// ---------- UPDATE: change a student's attendance status ----------
 app.put("/api/students/:id", (req, res) => {
   const { id } = req.params;
   const { status } = req.body;

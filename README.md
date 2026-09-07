@@ -1,45 +1,16 @@
-# Student Attendance Management System
+# React + Vite
 
-A simple full-stack app for managing student attendance, built with **React** (frontend), **Express** (backend/API), and **SQLite** (database).
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## Project structure
+Currently, two official plugins are available:
 
-```
-attendance-app/
-├── backend/
-│   ├── server.js        # Express API + database setup
-│   ├── package.json
-│   └── attendance.db    # created automatically the first time you run the server
-└── frontend/
-    ├── src/
-    │   ├── App.jsx       # form + table (insert, retrieve, update)
-    │   ├── App.css
-    │   └── main.jsx
-    └── package.json
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## How to run it
+## React Compiler
 
-### 1. Start the backend
-```
-cd backend
-npm install
-npm start
-```
-This starts the API on `http://localhost:5000` and creates `attendance.db`, seeded with the starting students.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### 2. Start the frontend (in a new terminal)
-```
-cd frontend
-npm install
-npm run dev
-```
-This starts the React app, usually at `http://localhost:5173`.
+## Expanding the Oxlint configuration
 
-## API endpoints
-
-| Method | Endpoint             | Purpose                        |
-|--------|----------------------|---------------------------------|
-| GET    | /api/students        | Retrieve all students           |
-| POST   | /api/students        | Insert a new student            |
-| PUT    | /api/students/:id    | Update a student's status       |
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
