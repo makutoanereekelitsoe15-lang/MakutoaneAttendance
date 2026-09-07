@@ -1,16 +1,45 @@
-# React + Vite
+# Student Attendance Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A simple full-stack app for managing student attendance, built with **React** (frontend), **Express** (backend/API), and **SQLite** (database).
 
-Currently, two official plugins are available:
+## Project structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```
+attendance-app/
+├── backend/
+│   ├── server.js        # Express API + database setup
+│   ├── package.json
+│   └── attendance.db    # created automatically the first time you run the server
+└── frontend/
+    ├── src/
+    │   ├── App.jsx       # form + table (insert, retrieve, update)
+    │   ├── App.css
+    │   └── main.jsx
+    └── package.json
+```
 
-## React Compiler
+## How to run it
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Start the backend
+```
+cd backend
+npm install
+npm start
+```
+This starts the API on `http://localhost:5000` and creates `attendance.db`, seeded with the starting students.
 
-## Expanding the Oxlint configuration
+### 2. Start the frontend (in a new terminal)
+```
+cd frontend
+npm install
+npm run dev
+```
+This starts the React app, usually at `http://localhost:5173`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## API endpoints
+
+| Method | Endpoint             | Purpose                        |
+|--------|----------------------|---------------------------------|
+| GET    | /api/students        | Retrieve all students           |
+| POST   | /api/students        | Insert a new student            |
+| PUT    | /api/students/:id    | Update a student's status       |
